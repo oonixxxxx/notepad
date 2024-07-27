@@ -2,55 +2,57 @@ from tkinter import *
 from tkinter import messagebox
 from tkinter import filedialog
 
+class Notepad_themes:
 # Темы
-view_colors = {
-    'dark': {
-        'text_bg': 'black', 'text_fg': 'lime', 'cursor': 'brown', 'select_bg': '#8D917A'
-    },
-    'light': {
-        'text_bg': 'white', 'text_fg': 'black', 'cursor': '#A5A5A5', 'select_bg': '#FAEEDD'
+    view_colors = {
+        'dark': {
+            'text_bg': 'black', 'text_fg': 'lime', 'cursor': 'brown', 'select_bg': '#8D917A'
+        },
+        'light': {
+            'text_bg': 'white', 'text_fg': 'black', 'cursor': '#A5A5A5', 'select_bg': '#FAEEDD'
+        }
     }
-}
 
-# Шрифты
-fonts = {
-    'Arial': {
-        'font': 'Arial 14 bold'
-    },
-    'CSMS': {
-        'font': ('Comic Sans MS', 14, 'bold')
-    },
-    'TNR': {
-        'font': ('Times New Roman', 14, 'bold')
+    # Шрифты
+    fonts = {
+        'Arial': {
+            'font': 'Arial 14 bold'
+        },
+        'CSMS': {
+            'font': ('Comic Sans MS', 14, 'bold')
+        },
+        'TNR': {
+            'font': ('Times New Roman', 14, 'bold')
+        }
     }
-}
 
-def change_theme(theme):
-    text_fild['bg'] = view_colors[theme]['text_bg']
-    text_fild['fg'] = view_colors[theme]['text_fg']
-    text_fild['insertbackground'] = view_colors[theme]['cursor']
-    text_fild['selectbackground'] = view_colors[theme]['select_bg']
-    
-def change_font(font):
-    text_fild['font'] = fonts[font]['font']
-    
-def notepad_exit():
-    answer = messagebox.askokcancel('Выход', 'Вы уверены, что хотите выйти?')
-    if answer:
-        root.destroy()
+class Notepad_functions:
+    def change_theme(theme):
+        text_fild['bg'] = Notepad_themes.view_colors[theme]['text_bg']
+        text_fild['fg'] = Notepad_themes.view_colors[theme]['text_fg']
+        text_fild['insertbackground'] = Notepad_themes.view_colors[theme]['cursor']
+        text_fild['selectbackground'] = Notepad_themes.view_colors[theme]['select_bg']
         
-def open_file():
-    file_path = filedialog.askopenfilename(initialdir='/', title='Open a file', filetypes=(('Text files', '*.txt'), ('All files', '*.*')))
-    if file_path:
-        with open(file_path, 'r') as file:
-            text_fild.delete(1.0, END)
-            text_fild.insert(1.0, file.read())
+    def change_font(font):
+        text_fild['font'] = Notepad_themes.fonts[font]['font']
+        
+    def notepad_exit():
+        answer = messagebox.askokcancel('Выход', 'Вы уверены, что хотите выйти?')
+        if answer:
+            root.destroy()
             
-def file_save():
-    file_path = filedialog.asksaveasfilename(initialdir='/', title='Save a file', filetypes=(('Text files', '*.txt'), ('All files', '*.*')))
-    if file_path:
-        with open(file_path, 'w') as file:
-            file.write(text_fild.get(1.0, END))       
+    def open_file():
+        file_path = filedialog.askopenfilename(initialdir='/', title='Open a file', filetypes=(('Text files', '*.txt'), ('All files', '*.*')))
+        if file_path:
+            with open(file_path, 'r') as file:
+                text_fild.delete(1.0, END)
+                text_fild.insert(1.0, file.read())
+                
+    def file_save():
+        file_path = filedialog.asksaveasfilename(initialdir='/', title='Save a file', filetypes=(('Text files', '*.txt'), ('All files', '*.*')))
+        if file_path:
+            with open(file_path, 'w') as file:
+                file.write(text_fild.get(1.0, END))       
 
 
 root = Tk()
@@ -102,23 +104,23 @@ file_menu.add_command(label='Закрыть')
 
 # Файл
 file_menu = Menu(main_menu, tearoff=0)
-file_menu.add_command(label='Открыть', command=open_file)
-file_menu.add_command(label='Сохранить', command=file_save)
+file_menu.add_command(label='Открыть', command=Notepad_functions.open_file)
+file_menu.add_command(label='Сохранить', command=Notepad_functions.file_save)
 file_menu.add_separator()
-file_menu.add_command(label='Закрыть', command=notepad_exit)
+file_menu.add_command(label='Закрыть', command=Notepad_functions.notepad_exit)
 root.config(menu=file_menu)
 
 # Вид
 view_menu = Menu(main_menu, tearoff=0)
 view_menu_sub = Menu(view_menu, tearoff=0)
 font_menu_sub = Menu(view_menu, tearoff=0)
-view_menu_sub.add_command(label='Тёмная', command=lambda: change_theme('dark'))
-view_menu_sub.add_command(label='Светлая', command=lambda: change_theme('light'))
+view_menu_sub.add_command(label='Тёмная', command=lambda: Notepad_functions.change_theme('dark'))
+view_menu_sub.add_command(label='Светлая', command=lambda: Notepad_functions.change_theme('light'))
 view_menu.add_cascade(label='Тема', menu=view_menu_sub)
 
-font_menu_sub.add_command(label='Arial', command=lambda: change_font('Arial'))
-font_menu_sub.add_command(label='Comic Sans MS', command=lambda: change_font('CSMS'))
-font_menu_sub.add_command(label='Times New Roman', command=lambda: change_font('TNR'))
+font_menu_sub.add_command(label='Arial', command=lambda: Notepad_functions.change_font('Arial'))
+font_menu_sub.add_command(label='Comic Sans MS', command=lambda: Notepad_functions.change_font('CSMS'))
+font_menu_sub.add_command(label='Times New Roman', command=lambda: Notepad_functions.change_font('TNR'))
 view_menu.add_cascade(label='Шрифт...', menu=font_menu_sub)
 root.config(menu=view_menu)
 
