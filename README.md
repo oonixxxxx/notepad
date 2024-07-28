@@ -44,6 +44,8 @@ such as:
 * Changing the font of the text in notepad
 * Saving and opening a file
 
+You can see the appearance and operation of the application in the assets folder
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
