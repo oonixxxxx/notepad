@@ -1,19 +1,3 @@
-#                               notepad
-
-![](https://github.com/oonixxxxx/notepad/blob/main/assets/photo/notepad_icon.jpg)
-
-Простое desktop приложение NOTEPAD 
-
-![](https://github.com/oonixxxxx/notepad/blob/main/assets/photo/defolt_notepad.jpg)
-
-которое имеет несолько тем которые можно переключать, несколько шрифтов.
-
-![](https://github.com/oonixxxxx/notepad/blob/main/assets/photo/look_notepad.jpg)
-
-имеет функцию открытия и сохранения файлов в формате Text files и All files
-
-![](https://github.com/oonixxxxx/notepad/blob/main/assets/photo/file_notepad.jpg)
-
 <!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
 <a id="readme-top"></a>
 <!--
@@ -47,7 +31,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="assets/photo/notepad_icon.jpg" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">Best-README-Template</h3>
