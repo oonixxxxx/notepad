@@ -42,7 +42,7 @@ f_text.pack(fill=BOTH, expand=1) #Расширение
 
 text_fild = Text(f_text,
                  bg='black',
-                 fg='lime',
+                 fg='white',
                  padx=10,
                  pady=10,
                  wrap=WORD,
